@@ -69,8 +69,8 @@ jobs:
       - name: Archive build output
         run: |
           mkdir -p artifacts
-          zip -r artifacts/GeneralsZH.zip build/vc6/GeneralsMD
-          zip -r artifacts/Generals.zip build/vc6/Generals
+          zip -r artifacts/GeneralsZH.zip cnc_build/build/vc6/GeneralsMD
+          zip -r artifacts/Generals.zip cnc_build/build/vc6/Generals
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
