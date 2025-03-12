@@ -69,11 +69,13 @@ jobs:
       - name: Archive build output
         run: |
           mkdir -p artifacts
-          zip -r artifacts/GeneralsMD_Run.zip GeneralsMD/Run
+          zip -r artifacts/GeneralsZH.zip build/vc6/GeneralsMD
+          zip -r artifacts/Generals.zip build/vc6/Generals
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: GeneralsMD_Run
-          path: artifacts/GeneralsMD_Run.zip
+          name: GeneralsZH
+          path: artifacts/*
+          
 
