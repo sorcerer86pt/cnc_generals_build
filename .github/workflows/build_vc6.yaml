@@ -52,9 +52,10 @@ jobs:
               -DCMAKE_CXX_COMPILER_WORKS=1
 
           cd "$BUILD_DIR/build/vc6"
-
+      
           # Run Nmake
           wine cmd /c "set TMP=Z:\\build\\tmp& set TEMP=Z:\\build\\tmp& Z:\\build\\tools\\vs6\\VC98\\Bin\\NMAKE.exe"
+          chown -R 1000:1000 $BUILD_DIR
           EOF
 
           chmod +x cnc_build/build_v6.sh
@@ -66,16 +67,16 @@ jobs:
             sorcerer86pt/vs6noble:main \
             /bin/bash -c "/build/cnc/build_v6.sh"
 
-      - name: Archive build output
-        run: |
-          mkdir -p artifacts
-          zip -r artifacts/GeneralsZH.zip cnc_build/build/vc6/GeneralsMD
-          zip -r artifacts/Generals.zip cnc_build/build/vc6/Generals
-
-      - name: Upload artifact
+      - name: Upload artifacts Generals
         uses: actions/upload-artifact@v4
         with:
-          name: GeneralsZH
-          path: artifacts/*
+          name: Generals
+          path: cnc_build/build/vc6/Generals/generals.exe
+
+      - name: Upload artifact Zero Hour
+        uses: actions/upload-artifact@v4
+        with:
+          name: GeneralsMD
+          path: cnc_build/build/vc6/GeneralsMD/zerohour.exe
           
 
